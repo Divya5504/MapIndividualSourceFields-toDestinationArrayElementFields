@@ -1,0 +1,18 @@
+Map Individual Source Fields to Destination Array Element Fields
+
+We have multiple fields in a flat source profile that need to insert as array element in the destination profile. There seems to be no way to define the map since it prevents mapping multiple input fields to one output field in the destination. See attached. In the attached example we have 4 values that need to insert into the array in the destination. Idea was to use custom scripting to do the array insert however can only map one field to the array element.
+solution:
+I noticed that you map the output of a custom script "Custom field array" to the array element itself. What you need to do is the following
+
+
+Create a custom map function
+Create 2 outputs, nameOut and valueOut
+Add both ICF1 and ICF2 as inputs to the script
+Script (if then else)
+nameOut = static value to the Name output
+valueOut = the value of an input
+Map both ICF1 and ICF2 to separate inputs of the function
+Map nameOut to Name element of JSon
+Map valueOut to Value element of JSon
+
+You can apply this solution to other 2 fields as well.
